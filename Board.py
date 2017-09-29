@@ -93,7 +93,34 @@ class Board(wx.Panel):
             self.newPiece()
 
     def removeFullLines(self):
-        pass
+        numFullLines = 0
+        statusbar = self.GetParent().statusbar
+        rowsToRemove = []
+        for i in range(Board.BoardHeight):
+            n = 0
+            for j in range(Board.BoardWidth):
+                if not self.shapeAt(j, i) == Tetrominoes.NoShape:
+                    n = n + 1
+
+                if n == 10:
+                    rowsToRemove.append(i)
+
+        rowsToRemove.reverse()
+
+        for m in rowsToRemove:
+            for k in range(m, Board.BoardHeight):
+                for l in range(Board.BoardWidth):
+                    self.setShapeAt(l, k, self.shapeAt(l, k+1))
+
+                newFullLines = numFullLines + len(rowsToRemove)
+
+                if numFullLines > 0:
+                    self.numLinesRemoved = self.numLinesRemoved + numFullLines
+                    statusbar.SetStatusText(str(self.numLinesRemoved))
+                    self.isWaitingAfterLine = True
+                    self.curPiece.setShape(Tetrominoes.NoShape)
+                    self.Refresh()
+
 
     def newPiece(self):
         self.curPiece = self.nextPiece
