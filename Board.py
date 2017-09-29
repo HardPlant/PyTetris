@@ -82,8 +82,20 @@ class Board(wx.Panel):
         pass
     def removeFullLines(self):
         pass
+
     def newPiece(self):
-        pass
+        self.curPiece = self.nextPiece
+        statusbar = self.GetParent().statusbar
+        self.nextPiece.setRandomShape()
+        self.curX = Board.BoardWidth / 2 + 1
+        self.curY = Board.BoardHeight -1 + self.curPiece.minY()
+
+        if not self.tryMove(self.curPiece, self.curX, self.curY):
+            self.curPiece.setShape(Tetrominoes.NoShape)
+            self.timer.Stop()
+            self.isStarted = False
+            statusbar.SetStatusText('Game Over')
+
     def tryMove(self, newPiece, newX, newY):
         pass
     def drawSquare(self, dc, x, y, shape):
