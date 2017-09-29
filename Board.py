@@ -1,4 +1,6 @@
 import wx
+from Shape import Shape
+
 
 class Board(wx.Panel):
     BoardWidth = 10
@@ -7,9 +9,28 @@ class Board(wx.Panel):
     ID_TIMER = 1
 
     def __init__(self, parent):
-        pass
+        wx.Panel.__init__(self, parent)
+        self.initBoard()
+
     def initBoard(self):
-        pass
+        self.timer = wx.Timer(self, Board.ID_TIMER)
+        self.isWaitingAfterLine = False
+        self.curPiece = Shape()
+        self.nextPiece = Shape()
+        self.curX = 0
+        self.curY = 0
+        self.numLinesRemoved = 0
+        self.board = []
+
+        self.isStarted = False
+        self.isPaused = False
+
+        self.Bind(wx.EVT_PAINT, self.OnPaint)
+        self.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+        self.Bind(wx.EVT_TIMER, self.onTimer, id=Board.ID_TIMER)
+
+        self.clearBoard()
+
     def shapeAt(self, x, y):
         pass
     def setShapeAt(self,x,y):
