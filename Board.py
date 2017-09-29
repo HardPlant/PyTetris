@@ -27,7 +27,7 @@ class Board(wx.Panel):
 
         self.Bind(wx.EVT_PAINT, self.OnPaint)
         self.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
-        self.Bind(wx.EVT_TIMER, self.onTimer, id=Board.ID_TIMER)
+        self.Bind(wx.EVT_TIMER, self.OnTimer, id=Board.ID_TIMER)
 
         self.clearBoard()
 
@@ -53,7 +53,9 @@ class Board(wx.Panel):
         self.timer.Start(Board.Speed)
 
     def pause(self):
-        pass
+        if not self.isStarted:
+            return
+
 
     def clearBoard(self):
         for i in range(Board.BoardHeight * Board.BoardWidth):
@@ -61,6 +63,7 @@ class Board(wx.Panel):
 
     def OnPaint(self,event):
         pass
+
     def OnKeyDown(self, event):
         pass
 
