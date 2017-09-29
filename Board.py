@@ -76,8 +76,11 @@ class Board(wx.Panel):
 
     def dropDown(self):
         pass
+
     def oneLineDown(self):
-        pass
+        if not self.tryMove(self.curPiece, self.curX, self.curY - 1):
+            self.pieceDropped()
+
     def pieceDropped(self):
         pass
     def removeFullLines(self):
@@ -112,7 +115,6 @@ class Board(wx.Panel):
         self.Refresh()
 
         return True
-
 
     def drawSquare(self, dc, x, y, shape):
         pass
