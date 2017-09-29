@@ -1,19 +1,17 @@
 import wx
-import random
+from Board import Board
 
-if __name__ == '__main__':
-    app = wx.App()
-    Tetris(None, title = 'Tetris')
-    app.MainLoop()
+# Tetris App Frontend
 
 class Tetris(wx.Frame):
     def __init__(self,parent, title):
         wx.Frame.__init__(self, parent, title=title, size=(180,380))
-
         self.initFrame()
 
     def initFrame(self):
-        pass
+        self.statusbar = self.CreateStatusBar()
+        self.statusbar.SetStatusText('0')
+        self.board = Board(self)
 
-class Board(wx.Panel):
-    pass
+        self.Centre()
+        self.Show(True)
