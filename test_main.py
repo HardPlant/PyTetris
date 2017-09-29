@@ -28,5 +28,6 @@ class TestFrame(unittest.TestCase):
         self.dlg.ShowModal()
         self.dlg.Destroy()
 
-
+if __name__ == '__main__':
+    unittest.main()
 
