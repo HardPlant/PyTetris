@@ -37,7 +37,7 @@ class Board(wx.Panel):
         pass
     def squareWidth(self):
         pass
-    def sqareHeight(self):
+    def squareHeight(self):
         pass
 
     def start(self):
@@ -163,5 +163,10 @@ class Board(wx.Panel):
         pen = wx.Pen(light[shape])
         pen.setCap(wx.CAP_PROJECTING)
         dc.SetPen(pen)
+
+        dc.DrawLine(x, y + self.squareHeight() - 1, x, y)
+        dc.DrawLine(x, y, x + self.squareWidth() -1, y)
+
+
 
 
