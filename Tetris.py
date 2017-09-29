@@ -12,6 +12,7 @@ class Tetris(wx.Frame):
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetStatusText('0')
         self.board = Board(self)
+        self.board.start()
 
         self.Centre()
         self.Show(True)
