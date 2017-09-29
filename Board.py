@@ -61,7 +61,15 @@ class Board(wx.Panel):
     def OnKeyDown(self, event):
         pass
     def OnTimer(self, event):
-        pass
+        if event.GetId() == Board.ID_TIMER:
+            if self.isWaitingAfterLine:
+                self.isWaitingAfterLine = False
+                self.newPiece()
+            else:
+                self.oneLineDown()
+        else:
+            event.Skip()
+
     def dropDown(self):
         pass
     def oneLineDown(self):
