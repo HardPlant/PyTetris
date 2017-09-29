@@ -1,6 +1,6 @@
 import wx
 from Shape import Shape
-
+from Tetrominoes import Tetrominoes
 
 class Board(wx.Panel):
     BoardWidth = 10
@@ -54,12 +54,16 @@ class Board(wx.Panel):
 
     def pause(self):
         pass
+
     def clearBoard(self):
-        pass
+        for i in range(Board.BoardHeight * Board.BoardWidth):
+            self.board.append(Tetrominoes.NoShape)
+
     def OnPaint(self,event):
         pass
     def OnKeyDown(self, event):
         pass
+
     def OnTimer(self, event):
         if event.GetId() == Board.ID_TIMER:
             if self.isWaitingAfterLine:
