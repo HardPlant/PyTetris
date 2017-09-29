@@ -153,4 +153,15 @@ class Board(wx.Panel):
         return True
 
     def drawSquare(self, dc, x, y, shape):
-        pass
+        color = ['#000000','#CC66666', '#66CC66', '#6666CC',
+                 '#CCCC66', '#CC66CC', '#66CCCC', '#DAAA00']
+
+        light = []
+
+        dark = []
+
+        pen = wx.Pen(light[shape])
+        pen.setCap(wx.CAP_PROJECTING)
+        dc.SetPen(pen)
+
+
