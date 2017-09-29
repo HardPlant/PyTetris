@@ -39,8 +39,19 @@ class Board(wx.Panel):
         pass
     def sqareHeight(self):
         pass
+
     def start(self):
-        pass
+        if self.isPaused:
+            return
+
+        self.isStarted = True
+        self.isWaitingAfterLine = False
+        self.numLinesRemoved = 0
+        self.clearBoard()
+
+        self.newPiece()
+        self.timer.Start(Board.Speed)
+
     def pause(self):
         pass
     def clearBoard(self):
