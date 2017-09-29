@@ -97,6 +97,22 @@ class Board(wx.Panel):
             statusbar.SetStatusText('Game Over')
 
     def tryMove(self, newPiece, newX, newY):
-        pass
+        for i in range(4):
+            x = newX + newPiece.x(i)
+            y = newY + newPiece.y(i)
+
+            if x < 0 or x >= Board.BoardWidth or y < 0 or y >= Board.BoardHeight:
+                return False
+            if self.shapeAt(x,y) != Tetrominoes.NoShape:
+                return False
+
+        self.curPiece = newPiece
+        self.curX = newX
+        self.curY = newY
+        self.Refresh()
+
+        return True
+
+
     def drawSquare(self, dc, x, y, shape):
         pass
