@@ -14,12 +14,14 @@ class TestFrame(unittest.TestCase):
         self.frame.Show()
 
     def tearDown(self):
-        wx.CallAfter(self.app.Exit)
+        # wx.CallAfter(self.app.Exit)
         self.app.MainLoop()
 
     def testDialog(self):
         def clickOK():
-            pass
+            clickEvent = wx.CommandEvent(wx.wxEVT_COMMAND_BUTTON_CLICKED, wx.ID_OK)
+            self.dlg.ProcessEvent(clickEvent)
+
         wx.CallAfter(clickOK)
         self.ShowDialog()
 
@@ -30,4 +32,5 @@ class TestFrame(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
