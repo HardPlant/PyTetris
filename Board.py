@@ -1,6 +1,11 @@
 import wx
 
 class Board(wx.Panel):
+    BoardWidth = 10
+    BoardHeight = 22
+    Speed = 300
+    ID_TIMER = 1
+
     def __init__(self, parent):
         pass
     def initBoard(self):
