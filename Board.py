@@ -167,6 +167,19 @@ class Board(wx.Panel):
         dc.DrawLine(x, y + self.squareHeight() - 1, x, y)
         dc.DrawLine(x, y, x + self.squareWidth() -1, y)
 
+        darkpen = wx.Pen(dark[shape])
+        darkpen.SetCap(wx.CAP_PROJECTING)
+        dc.SetPen(darkpen)
+
+        dc.DrawLine(x+1,y+self.squareHeight()-1,
+                    x+self.squareWidth() - 1, y + self.squareHeight() - 1)
+
+        dc.SetPen(wx.TRANSPARENT_PEN)
+        dc.SetBrush(wx.Brush(color[shape]))
+        dc.DrawRectangle(x + 1, y + 1, self.squareWidth() - 2,
+                         self.squareHeight() - 2)
+
+
 
 
 
