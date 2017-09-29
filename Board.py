@@ -33,7 +33,7 @@ class Board(wx.Panel):
 
     def shapeAt(self, x, y):
         pass
-    def setShapeAt(self,x,y):
+    def setShapeAt(self, x, y, shape):
         pass
     def squareWidth(self):
         pass
@@ -82,7 +82,16 @@ class Board(wx.Panel):
             self.pieceDropped()
 
     def pieceDropped(self):
-        pass
+        for i in range(4):
+            x = self.curX + self.curPiece.x(i)
+            y = self.curY + self.curPiece.y(i)
+            self.setShapeAt(x, y, self.curPiece.shape())
+
+        self.removeFullLines()
+
+        if not self.isWaitingAfterLine:
+            self.newPiece()
+
     def removeFullLines(self):
         pass
 
